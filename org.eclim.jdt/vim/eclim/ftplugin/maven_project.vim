@@ -22,8 +22,8 @@
 " }}}
 
 " load any xml related functionality
-runtime ftplugin/xml.vim
-runtime indent/xml.vim
+runtime! ftplugin/xml.vim
+runtime! indent/xml.vim
 
 " Command Declarations {{{
 if !exists(":MavenRepo")

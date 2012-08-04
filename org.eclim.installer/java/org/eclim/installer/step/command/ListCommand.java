@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005 - 2011  Eric Van Dewoestine
+ * Copyright (C) 2012  Eric Van Dewoestine
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,30 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.eclim.eclipse;
+package org.eclim.installer.step.command;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
- * Dummy workbench advisor that allows the workbench to be created, but never
- * shown.
+ * Command to list avaliable features for one or more update sites.
  *
  * @author Eric Van Dewoestine
  */
-public class WorkbenchAdvisor
-  extends org.eclipse.ui.application.WorkbenchAdvisor
+public class ListCommand
+  extends Command
 {
-  /**
-   * {@inheritDoc}
-   */
-  public String getInitialWindowPerspectiveId()
+  public ListCommand(OutputHandler handler, String[] sites)
+    throws Exception
   {
-    return null;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public boolean openWindows()
-  {
-    return true;
+    super(handler, new String[]{
+      "-repository", StringUtils.join(sites, ','),
+      "-list",
+    }, "org.eclipse.equinox.p2.director");
   }
 }
